@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoManager.Core", "ToDoManager.Core\ToDoManager.Core.csproj", "{7F928B57-F70B-4E15-AECB-0E8DE4986494}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoManager.Tests", "ToDoManager.Tests\ToDoManager.Tests.csproj", "{D05D7832-3FCA-48DA-94FF-55B9879D64E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7F928B57-F70B-4E15-AECB-0E8DE4986494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F928B57-F70B-4E15-AECB-0E8DE4986494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F928B57-F70B-4E15-AECB-0E8DE4986494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F928B57-F70B-4E15-AECB-0E8DE4986494}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D05D7832-3FCA-48DA-94FF-55B9879D64E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D05D7832-3FCA-48DA-94FF-55B9879D64E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D05D7832-3FCA-48DA-94FF-55B9879D64E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D05D7832-3FCA-48DA-94FF-55B9879D64E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {659ADB0E-2126-44A4-BB0D-CA3304058A95}
+	EndGlobalSection
+EndGlobal
