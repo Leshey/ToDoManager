@@ -39,22 +39,6 @@ public class ToDoTaskTests
         Assert.Equal(deadline1, deadline2);
     }
 
-    //[Fact]
-    //public void CompleteTaskTestToCheckDateTimeNow()
-    //{
-    //    //arrange
-    //    var toDoTask = new ToDoTask("Test", new DateTime(2022, 7, 24, 20, 0, 0));
-    //    var initialTaskStatus = toDoTask.TaskStatus;
-
-    //    //act
-    //    toDoTask.CompleteTask();
-    //    var taskTimeWhenCompleted = DateTime.Now;
-
-    //    //assert
-    //    Assert.NotEqual(initialTaskStatus, toDoTask.TaskStatus);
-    //    Assert.Equal(taskTimeWhenCompleted, toDoTask.TaskTimeWhenCompleted);
-    //}
-
     [Fact]
     public void ReopenWhileStatusIsOpenTest()
     {

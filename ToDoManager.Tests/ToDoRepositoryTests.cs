@@ -47,10 +47,12 @@ public class ToDoRepositoryTests
         toDoTaskRepository.Add(toDoTask2);
         toDoTaskRepository.Add(toDoTask3);
 
-        var expectedValue = new List<ToDoTask>();
-        expectedValue.Add(toDoTask1);
-        expectedValue.Add(toDoTask2);
-        expectedValue.Add(toDoTask3);
+        var expectedValue = new List<ToDoTask>
+        {
+            toDoTask1,
+            toDoTask2,
+            toDoTask3
+        };
 
         //act
         var actualValue = toDoTaskRepository.GetToDoWithinRange(null, null);

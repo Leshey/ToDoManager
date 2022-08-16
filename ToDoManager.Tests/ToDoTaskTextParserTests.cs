@@ -15,14 +15,22 @@ public class ToDoTaskTextParserTests
         var path = "dataSaveInFile.txt";
         var parserConverter = new ParserConverter();
 
-        var toDoTask1 = new ToDoTask("Test", new DateTime(1, 1, 1, 1, 1, 1));
-        var toDoTask2 = new ToDoTask("Test", new DateTime(2, 2, 2, 2, 2, 2), new DateTime(2, 2, 2, 3, 3, 3));
-        var toDoTask3 = new ToDoTask("Test", new DateTime(3, 3, 3, 3, 3, 3));
+        DateTime deadline1 = new DateTime(1, 1, 1, 1, 1, 1);
+        DateTime deadline2 = new DateTime(2, 2, 2, 2, 2, 2);
+        DateTime deadline3 = new DateTime(3, 3, 3, 3, 3, 3);
 
-        var data = new Dictionary<uint, ToDoTask>();
-        data.Add(toDoTask1.Id, toDoTask1);
-        data.Add(toDoTask2.Id, toDoTask2);
-        data.Add(toDoTask3.Id, toDoTask3);
+        DateTime timeWhenComplited = new DateTime(2, 2, 2, 3, 3, 3);
+
+        var toDoTask1 = new ToDoTask("ToDoTask1", deadline1);
+        var toDoTask2 = new ToDoTask("ToDoTask2", deadline2, timeWhenComplited);
+        var toDoTask3 = new ToDoTask("ToDoTask3", deadline3);
+
+        var data = new Dictionary<uint, ToDoTask>
+        {
+            { toDoTask1.Id, toDoTask1 },
+            { toDoTask2.Id, toDoTask2 },
+            { toDoTask3.Id, toDoTask3 }
+        };
 
         var toDoTaskTextParser = new ToDoTaskTextParser(path);
 
@@ -59,6 +67,7 @@ public class ToDoTaskTextParserTests
 
         var toDoTask1 = new ToDoTask("Test", new DateTime(2, 2, 2, 2, 2, 2), new DateTime(3, 3, 3, 3, 3, 3));
         var expected1 = $"$№Id:{toDoTask1.Id}№Name:Test№Deadline:02.02.0002 2:02:02№TimeWhenCompleted:03.03.0003 3:03:03№%";
+       
         var toDoTask2 = new ToDoTask("This is not test", new DateTime(5, 5, 5, 5, 5, 5));
         var expected2 = $"$№Id:{toDoTask2.Id}№Name:This is not test№Deadline:05.05.0005 5:05:05№TimeWhenCompleted:№%";
 
@@ -76,14 +85,23 @@ public class ToDoTaskTextParserTests
     {
         //arrange
         var path = "dataStringToSave.txt";
-        var toDoTask1 = new ToDoTask("Test", new DateTime(1, 1, 1, 0, 0, 0));
-        var toDoTask2 = new ToDoTask("Test", new DateTime(2, 2, 2, 0, 0, 0), new DateTime(2, 2, 2, 1, 1, 1));
-        var toDoTask3 = new ToDoTask("Test", new DateTime(3, 3, 3, 0, 0, 0));
 
-        var data = new List<ToDoTask>();
-        data.Add(toDoTask1);
-        data.Add(toDoTask2);
-        data.Add(toDoTask3);
+        DateTime deadline1 = new DateTime(1, 1, 1, 0, 0, 0);
+        DateTime deadline2 = new DateTime(2, 2, 2, 0, 0, 0);
+        DateTime deadline3 = new DateTime(3, 3, 3, 0, 0, 0);
+
+        DateTime timeWhenComplited = new DateTime(2, 2, 2, 1, 1, 1);
+
+        var toDoTask1 = new ToDoTask("ToDoTask1", deadline1);
+        var toDoTask2 = new ToDoTask("ToDoTask2", deadline2, timeWhenComplited);
+        var toDoTask3 = new ToDoTask("ToDoTask3", deadline3);
+
+        var data = new List<ToDoTask> 
+        { 
+            toDoTask1, 
+            toDoTask2, 
+            toDoTask3 
+        };
 
         var expected = data;
 
