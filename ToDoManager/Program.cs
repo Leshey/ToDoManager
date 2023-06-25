@@ -1,4 +1,5 @@
 using ToDoTaskManager.Application;
+using ToDoTaskManager.Domain.Core;
 using ToDoTaskManager.Domain.ToDos;
 using ToDoTaskManager.Infrastructure;
 using ToDoTaskManager.Infrastructure.ToDos;
@@ -14,7 +15,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IToDoRepository, ToDoRepository>();
 builder.Services.AddScoped<ToDoService>();
-builder.Services.AddScoped<ToDoContext>();
+builder.Services.AddScoped<ToDoTaskManagerContext>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
@@ -25,9 +27,37 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+//app.Use(
+//    async (context, next) =>
+//    {
+//        await next(context);
+
+//        context.Response.Headers.Add("Super-Header", "Test");
+//    });
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.Use(
+    async (context, next) =>
+    {
+        try
+        {
+            await next();
+        }
+        catch (ApplicationExeption e)
+        {
+            context.Response.StatusCode = e.StatusCode;
+            await context.Response.WriteAsJsonAsync(e.Message);
+        }
+        catch(BusinessExeption e) 
+        {
+            context.Response.StatusCode = e.StatusCode;
+            await context.Response.WriteAsJsonAsync(e.Message);
+        }
+
+    });
 
 app.MapControllers();
 

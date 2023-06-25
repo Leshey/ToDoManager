@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ToDoTaskManager.Domain.Core;
+﻿using ToDoTaskManager.Domain.Core;
 
 namespace ToDoTaskManager.Domain.ToDos;
 
@@ -28,7 +23,7 @@ public class ToDo
     {
         if (IsDone) 
         {
-            throw new InvalidOperationException();
+            throw new CannotCloseToDoException(Id);
         }
 
         DoneTime = DateTimeProvider.UtcNow; 

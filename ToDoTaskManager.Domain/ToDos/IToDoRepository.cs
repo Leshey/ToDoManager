@@ -12,10 +12,10 @@ public interface IToDoRepository
 
     Task<ToDo> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
 
+    Task<IEnumerable<ToDo>> GetToDos(int count, int page, CancellationToken cancellationToken = default);
+
     Task UpdateAsync(ToDo toDo, CancellationToken cancellationToken = default);
 
     Task DeleteAsync(ToDo toDo, CancellationToken cancellationToken = default);
-
-    Task SaveChangesAsync(CancellationToken cancellationToken = default);
 }
 

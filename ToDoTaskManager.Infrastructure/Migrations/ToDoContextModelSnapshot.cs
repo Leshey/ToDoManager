@@ -10,7 +10,7 @@ using ToDoTaskManager.Infrastructure;
 
 namespace ToDoTaskManager.Infrastructure.Migrations
 {
-    [DbContext(typeof(ToDoContext))]
+    [DbContext(typeof(ToDoTaskManagerContext))]
     partial class ToDoContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

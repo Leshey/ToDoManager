@@ -21,7 +21,7 @@ public class ToDoController : ControllerBase
         return await _toDoService.CreateNewToDoAsync(name, cancellationToken);
     }
 
-    [HttpGet]
+    [HttpGet("GetById")]
     public async Task<ActionResult<ToDo?>> GetById([FromQuery] Guid id, CancellationToken cancellationToken) 
     {
         var toDo = await _toDoService.GetByIdAsync(id, cancellationToken);
@@ -34,9 +34,27 @@ public class ToDoController : ControllerBase
         return Ok(toDo);
     }
 
+    [HttpGet("GetToDos")]
+    public async Task<ActionResult<IEnumerable<ToDo?>>> GetToDos([FromQuery] int count, [FromQuery] int page, CancellationToken cancellationToken) 
+    {
+        var toDos = await _toDoService.GetToDos(count, page, cancellationToken);
+
+        return Ok(toDos);
+    }
+
     [HttpDelete]
-    public async Task RemoveById([FromQuery] Guid id, CancellationToken cancellationToken) 
+    public async Task<ActionResult> RemoveById([FromQuery] Guid id, CancellationToken cancellationToken) 
     {
         await _toDoService.DeleteById(id, cancellationToken);
+        
+        return Ok();
+    }
+
+    [HttpPut]
+    public async Task<ActionResult> CloseById([FromQuery] Guid id, CancellationToken cancellationToken)
+    {
+        await _toDoService.CloseToDoById(id, cancellationToken);
+
+        return Ok();
     }
 }

@@ -11,7 +11,7 @@ using ToDoTaskManager.Infrastructure;
 
 namespace ToDoTaskManager.Infrastructure.Migrations
 {
-    [DbContext(typeof(ToDoContext))]
+    [DbContext(typeof(ToDoTaskManagerContext))]
     [Migration("20230530182620_RenameColumnsAndTableName")]
     partial class RenameColumnsAndTableName
     {

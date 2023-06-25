@@ -8,7 +8,7 @@ using ToDoTaskManager.Domain.ToDos;
 
 namespace ToDoTaskManager.Infrastructure;
 
-public class ToDoContext : DbContext
+public class ToDoTaskManagerContext : DbContext
 {
     public DbSet<ToDo> ToDos { get; set; }
 
