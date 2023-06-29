@@ -1,4 +1,5 @@
 ﻿using ToDoTaskManager.Domain.Core;
+using ToDoTaskManager.Domain.ToDos.Exceptions;
 
 namespace ToDoTaskManager.Domain.ToDos;
 
@@ -13,22 +14,22 @@ public class ToDo
         Name = name;
         DoneTime = doneTime;
     }
-    
+
     public Guid Id { get; }
     public string Name { get; }
     public DateTime? DoneTime { get; private set; }
     public bool IsDone => DoneTime.HasValue;
 
-    public void Close() 
+    public void Close()
     {
-        if (IsDone) 
+        if (IsDone)
         {
             throw new CannotCloseToDoException(Id);
         }
 
-        DoneTime = DateTimeProvider.UtcNow; 
+        DoneTime = DateTimeProvider.UtcNow;
     }
-    
+
     public override bool Equals(object? obj)
     {
         var todo = obj as ToDo;
@@ -41,7 +42,7 @@ public class ToDo
         return Id.GetHashCode();
     }
 
-    public static ToDo Create(string name) 
+    public static ToDo Create(string name)
     {
         var id = Guid.NewGuid();
 

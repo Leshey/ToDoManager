@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ToDoTaskManager.Domain\ToDoTaskManager.Domain.csproj" />
+    <ProjectReference Include="..\ToDoTaskManager.Infrastructure\ToDoTaskManager.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

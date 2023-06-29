@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ToDoTaskManager.Application.ToDos.Exceptions;
+using ToDoTaskManager.Application.ToDos.Models;
 using ToDoTaskManager.Domain.Core;
 using ToDoTaskManager.Domain.ToDos;
-namespace ToDoTaskManager.Application;
+
+namespace ToDoTaskManager.Application.ToDos;
 
 public class ToDoService
 {
@@ -34,39 +32,39 @@ public class ToDoService
         return toDo.Id;
     }
 
-    public async Task<ToDo> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    public async Task<ToDoModel?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var toDo = await _toDoRepository.GetByIdAsync(id, cancellationToken);
 
-        return toDo;
+        return toDo is not null ? new ToDoModel(toDo.Id, toDo.Name, toDo.DoneTime, toDo.IsDone) : null;
     }
 
-    public async Task<IEnumerable<ToDo>> GetToDos(int count, int page, CancellationToken cancellationToken = default) 
+    public async Task<IEnumerable<ToDo>> GetToDos(int count, int page, CancellationToken cancellationToken = default)
     {
         var toDo = await _toDoRepository.GetToDos(count, page, cancellationToken);
 
         return toDo;
     }
 
-    public async Task DeleteById(Guid id, CancellationToken cancellationToken = default) 
+    public async Task DeleteById(Guid id, CancellationToken cancellationToken = default)
     {
         var toDo = await _toDoRepository.GetByIdAsync(id, cancellationToken);
 
-        if (toDo == null) 
+        if (toDo == null)
         {
             throw new ToDoNotFoundExeption(id);
         }
-        
+
         await _toDoRepository.DeleteAsync(toDo, cancellationToken);
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task CloseToDoById(Guid id, CancellationToken cancellationToken = default) 
+    public async Task CloseToDoById(Guid id, CancellationToken cancellationToken = default)
     {
         var toDo = await _toDoRepository.GetByIdAsync(id, cancellationToken);
 
-        if (toDo == null) 
+        if (toDo == null)
         {
             throw new ToDoNotFoundExeption(id);
         }

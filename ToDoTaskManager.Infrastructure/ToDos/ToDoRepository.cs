@@ -1,10 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ToDoTaskManager.Domain.ToDos;
+using ToDoTaskManager.Infrastructure.Exceptions;
 
 namespace ToDoTaskManager.Infrastructure.ToDos;
 
@@ -29,6 +25,16 @@ public class ToDoRepository : IToDoRepository
 
     public async Task<IEnumerable<ToDo>> GetToDos(int count, int page, CancellationToken cancellationToken = default) 
     {
+        if (count < 1)
+        {
+            throw new InvalidToDoCountExeption();
+        }
+
+        if (page < 0)
+        {
+            throw new InvalidPageException();
+        }
+
         var toDo = await _context.ToDos.Skip(count * page).Take(count).ToListAsync();
 
         return toDo;

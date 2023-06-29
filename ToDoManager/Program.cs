@@ -1,7 +1,9 @@
-using ToDoTaskManager.Application;
+using ToDoTaskManager.Application.ToDos;
+using ToDoTaskManager.Application.ToDos.Exceptions;
 using ToDoTaskManager.Domain.Core;
 using ToDoTaskManager.Domain.ToDos;
 using ToDoTaskManager.Infrastructure;
+using ToDoTaskManager.Infrastructure.Exceptions;
 using ToDoTaskManager.Infrastructure.ToDos;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -51,7 +53,12 @@ app.Use(
             context.Response.StatusCode = e.StatusCode;
             await context.Response.WriteAsJsonAsync(e.Message);
         }
-        catch(BusinessExeption e) 
+        catch (BusinessExeption e)
+        {
+            context.Response.StatusCode = e.StatusCode;
+            await context.Response.WriteAsJsonAsync(e.Message);
+        }
+        catch (InfrastructureException e) 
         {
             context.Response.StatusCode = e.StatusCode;
             await context.Response.WriteAsJsonAsync(e.Message);

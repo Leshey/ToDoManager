@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ToDoTaskManager.Application;
+using ToDoTaskManager.Application.ToDos;
 using ToDoTaskManager.Domain.ToDos;
+using ToDoTaskManager.WebApi.Responses;
 
 namespace ToDoTaskManager.WebApi.Controllers;
 
@@ -22,7 +23,7 @@ public class ToDoController : ControllerBase
     }
 
     [HttpGet("GetById")]
-    public async Task<ActionResult<ToDo?>> GetById([FromQuery] Guid id, CancellationToken cancellationToken) 
+    public async Task<ActionResult<GetByIdResponse?>> GetById([FromQuery] Guid id, CancellationToken cancellationToken) 
     {
         var toDo = await _toDoService.GetByIdAsync(id, cancellationToken);
 
@@ -31,7 +32,7 @@ public class ToDoController : ControllerBase
             return NotFound();
         }
 
-        return Ok(toDo);
+        return Ok(new GetByIdResponse(toDo.Id, toDo.Name, toDo.DoneTime, toDo.IsDone));
     }
 
     [HttpGet("GetToDos")]
