@@ -1,17 +1,25 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using ToDoTaskManager.Domain.ToDos;
 
 namespace ToDoTaskManager.Infrastructure;
 
 public class ToDoTaskManagerContext : DbContext
 {
+    private readonly IConfiguration _dbConfig;
+
+    public ToDoTaskManagerContext(IConfiguration configuration) 
+    {
+        _dbConfig = configuration;
+    }
+
     public DbSet<ToDo> ToDos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
 
-        optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Userid=postgres;Password=testsql;Database=todo_task_manager");
+        optionsBuilder.UseNpgsql(_dbConfig.GetConnectionString("Postgres"));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

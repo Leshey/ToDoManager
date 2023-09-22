@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
 using ToDoTaskManager.Application.ToDos;
-using ToDoTaskManager.Domain.ToDos;
 using ToDoTaskManager.WebApi.Responses;
 
 namespace ToDoTaskManager.WebApi.Controllers;
@@ -17,45 +17,61 @@ public class ToDoController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<Guid> CreateNewToDo([FromBody] string name, CancellationToken cancellationToken)
+    public async Task<CreateNewToDoResponse> CreateNewToDo([FromBody] CreateNewToDoRequest request, CancellationToken cancellationToken)
     {
-        return await _toDoService.CreateNewToDoAsync(name, cancellationToken);
+        return new CreateNewToDoResponse(await _toDoService.CreateNewToDoAsync(request.Name, cancellationToken));
     }
 
     [HttpGet("GetById")]
     public async Task<ActionResult<GetByIdResponse?>> GetById([FromQuery] Guid id, CancellationToken cancellationToken) 
     {
-        var toDo = await _toDoService.GetByIdAsync(id, cancellationToken);
+        var toDos = await _toDoService.GetByIdAsync(id, cancellationToken);
 
-        if (toDo == null) 
+        if (toDos == null) 
         {
             return NotFound();
         }
-
-        return Ok(new GetByIdResponse(toDo.Id, toDo.Name, toDo.DoneTime, toDo.IsDone));
+        
+        return Ok(new GetByIdResponse(toDos.Id, toDos.Name, toDos.DoneTime, toDos.IsDone));
     }
 
     [HttpGet("GetToDos")]
-    public async Task<ActionResult<IEnumerable<ToDo?>>> GetToDos([FromQuery] int count, [FromQuery] int page, CancellationToken cancellationToken) 
+    public async Task<ActionResult<GetToDosResponse>> GetToDos([FromQuery] int count, [FromQuery] int page, CancellationToken cancellationToken) 
     {
         var toDos = await _toDoService.GetToDos(count, page, cancellationToken);
 
-        return Ok(toDos);
+        var toDosResponse = new List<GetToDosResponseItem>();
+        
+        foreach (var toDo in toDos.ToDos)
+        {
+            toDosResponse.Add(new GetToDosResponseItem(toDo.Id, toDo.Name, toDo.DoneTime, toDo.IsDone));
+        }
+
+        return Ok(toDosResponse);
     }
 
     [HttpDelete]
-    public async Task<ActionResult> RemoveById([FromQuery] Guid id, CancellationToken cancellationToken) 
+    public async Task<ActionResult<RemoveByIdResponse>> RemoveById([FromQuery] RemoveByIdRequest request, CancellationToken cancellationToken) 
     {
-        await _toDoService.DeleteById(id, cancellationToken);
+        await _toDoService.DeleteById(request.id, cancellationToken);
         
-        return Ok();
+        return Ok(new RemoveByIdResponse());
     }
 
     [HttpPut]
-    public async Task<ActionResult> CloseById([FromQuery] Guid id, CancellationToken cancellationToken)
+    public async Task<ActionResult<CloseByIdResponse>> CloseById([FromQuery] CloseByIdRequest request, CancellationToken cancellationToken)
     {
-        await _toDoService.CloseToDoById(id, cancellationToken);
+        await _toDoService.CloseToDoById(request.Id, cancellationToken);
 
-        return Ok();
+        return Ok(new CloseByIdResponse());
     }
 }
+
+public record CreateNewToDoRequest(string Name);
+public record CreateNewToDoResponse(Guid id);
+
+public record RemoveByIdRequest(Guid id);
+public record RemoveByIdResponse();
+
+public record CloseByIdRequest(Guid Id);
+public record CloseByIdResponse();

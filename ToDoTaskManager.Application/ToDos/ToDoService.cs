@@ -39,11 +39,13 @@ public class ToDoService
         return toDo is not null ? new ToDoModel(toDo.Id, toDo.Name, toDo.DoneTime, toDo.IsDone) : null;
     }
 
-    public async Task<IEnumerable<ToDo>> GetToDos(int count, int page, CancellationToken cancellationToken = default)
+    public async Task<ToDoModels> GetToDos(int count, int page, CancellationToken cancellationToken = default)
     {
-        var toDo = await _toDoRepository.GetToDos(count, page, cancellationToken);
+        var toDos = await _toDoRepository.GetToDos(count, page, cancellationToken);
 
-        return toDo;
+        var toDoModels = toDos.ToToDoModels();
+         
+        return new ToDoModels(toDoModels);
     }
 
     public async Task DeleteById(Guid id, CancellationToken cancellationToken = default)

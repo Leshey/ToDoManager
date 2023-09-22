@@ -5,11 +5,21 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoTaskManager.WebApi", "ToDoManager\ToDoTaskManager.WebApi.csproj", "{1AD602D7-E9C7-4BFD-BEBE-86D7A8DD0719}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoTaskManager.Domain", "ToDoTaskManager.Domain\ToDoTaskManager.Domain.csproj", "{8DA4DC6F-718A-4F1D-9805-FFC2BF756D6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoTaskManager.Domain", "ToDoTaskManager.Domain\ToDoTaskManager.Domain.csproj", "{8DA4DC6F-718A-4F1D-9805-FFC2BF756D6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoTaskManager.Infrastructure", "ToDoTaskManager.Infrastructure\ToDoTaskManager.Infrastructure.csproj", "{0E6BF881-478B-40A6-9E75-DCF7A1C0DB51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoTaskManager.Infrastructure", "ToDoTaskManager.Infrastructure\ToDoTaskManager.Infrastructure.csproj", "{0E6BF881-478B-40A6-9E75-DCF7A1C0DB51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoTaskManager.Application", "ToDoTaskManager.Application\ToDoTaskManager.Application.csproj", "{C8C4C9D7-8B29-44B8-993B-0C722B3CC888}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoTaskManager.Application", "ToDoTaskManager.Application\ToDoTaskManager.Application.csproj", "{C8C4C9D7-8B29-44B8-993B-0C722B3CC888}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MallContainer", "MallContainer\MallContainer.csproj", "{0436F27A-B350-4C4F-8451-557C0A55964D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MallContainerTests", "MallContainerTests\MallContainerTests.csproj", "{483288BB-9E08-4C00-AE6C-7203929024B7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoTaskManager.TelegramBot", "ToDoTaskManager.TelegramBot\ToDoTaskManager.TelegramBot.csproj", "{9084CAC7-EB17-4821-8DE3-2BADFE6A1F2E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{491127E4-C584-4C04-B9C2-8DF6F06FFBEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramBotTests", "TelegramBotTests\TelegramBotTests.csproj", "{E65B86BA-AC6B-4F8B-BD80-5D8EB239EE8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +43,28 @@ Global
 		{C8C4C9D7-8B29-44B8-993B-0C722B3CC888}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8C4C9D7-8B29-44B8-993B-0C722B3CC888}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8C4C9D7-8B29-44B8-993B-0C722B3CC888}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0436F27A-B350-4C4F-8451-557C0A55964D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0436F27A-B350-4C4F-8451-557C0A55964D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0436F27A-B350-4C4F-8451-557C0A55964D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0436F27A-B350-4C4F-8451-557C0A55964D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{483288BB-9E08-4C00-AE6C-7203929024B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{483288BB-9E08-4C00-AE6C-7203929024B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{483288BB-9E08-4C00-AE6C-7203929024B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{483288BB-9E08-4C00-AE6C-7203929024B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9084CAC7-EB17-4821-8DE3-2BADFE6A1F2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9084CAC7-EB17-4821-8DE3-2BADFE6A1F2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9084CAC7-EB17-4821-8DE3-2BADFE6A1F2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9084CAC7-EB17-4821-8DE3-2BADFE6A1F2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E65B86BA-AC6B-4F8B-BD80-5D8EB239EE8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E65B86BA-AC6B-4F8B-BD80-5D8EB239EE8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E65B86BA-AC6B-4F8B-BD80-5D8EB239EE8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E65B86BA-AC6B-4F8B-BD80-5D8EB239EE8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E65B86BA-AC6B-4F8B-BD80-5D8EB239EE8A} = {491127E4-C584-4C04-B9C2-8DF6F06FFBEF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4DEC652C-4D06-4F17-A6B2-B3CA5C8944CF}
