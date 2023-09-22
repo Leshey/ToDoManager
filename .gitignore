@@ -361,3 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Telegram Bot Config
+ToDoTaskManager.TelegramBot/config.json
+
+# VS development appsettings
+**/appsettings.[Dd]evelopment.json
