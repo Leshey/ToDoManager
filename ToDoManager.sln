@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToDoTaskManager.TelegramBot
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{491127E4-C584-4C04-B9C2-8DF6F06FFBEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelegramBotTests", "TelegramBotTests\TelegramBotTests.csproj", "{E65B86BA-AC6B-4F8B-BD80-5D8EB239EE8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramBotTests", "TelegramBotTests\TelegramBotTests.csproj", "{E65B86BA-AC6B-4F8B-BD80-5D8EB239EE8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +64,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{483288BB-9E08-4C00-AE6C-7203929024B7} = {491127E4-C584-4C04-B9C2-8DF6F06FFBEF}
 		{E65B86BA-AC6B-4F8B-BD80-5D8EB239EE8A} = {491127E4-C584-4C04-B9C2-8DF6F06FFBEF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

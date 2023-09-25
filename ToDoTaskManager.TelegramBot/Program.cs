@@ -7,6 +7,7 @@ using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
 using ToDoTaskManager.TelegramBot.Integration;
 using ToDoTaskManager.TelegramBot.Requests;
+using ToDoTaskManager.TelegramBot.UI;
 
 var client = new ToDoTaskManagerClient("https://localhost:7023");
 var service = new ToDoTaskManagerService(client);
@@ -75,19 +76,20 @@ async Task HandleUpdateAsync(ITelegramBotClient client, Update update, Cancellat
     var createCommand = "/Create";
     var deleteCommand = "/Delete";
     var closeCommand = "/Close";
+    //var testKeyboard = "/TestKeyboard";
 
-    if (message.Text.StartsWith(createCommand)) 
+    if (message.Text.StartsWith(createCommand))
     {
         var name = new string(message.Text.Skip(createCommand.Length + 1).ToArray());
 
         var response = await service.CreateNewToDo(new CreateNewToDoRequest(name), cancellationToken);
 
         await client.SendTextMessageAsync(chatId, response.Id.ToString(), cancellationToken: cancellationToken);
-        
+
         return;
     }
 
-    if (message.Text.StartsWith(deleteCommand)) 
+    if (message.Text.StartsWith(deleteCommand))
     {
         var id = new string(message.Text.Skip(deleteCommand.Length + 1).ToArray());
 
@@ -108,6 +110,25 @@ async Task HandleUpdateAsync(ITelegramBotClient client, Update update, Cancellat
 
         return;
     }
+
+    //if (message.Text.StartsWith(testKeyboard))
+    //{
+    //    var keyboard = new MessageKeyboard();
+    //    keyboard.AddButton(Buttons.CreateNewToDo);
+    //    keyboard.AddButton(Buttons.DeleteToDo);
+    //    keyboard.AddLine();
+    //    keyboard.AddButton(Buttons.ReopenToDo);
+    //    keyboard.AddButton(Buttons.Back);
+
+    //    await client.SendTextMessageAsync(
+    //         chatId: chatId,
+    //         text: "Testing keyboard",
+    //         replyMarkup: keyboard.RenderKeyboard(),
+    //         cancellationToken: cancellationToken
+    //         );
+
+    //    return;
+    //}
 
     if (update.Message.Text == "Do some stuff")
     {
@@ -163,6 +184,7 @@ async Task HandleUpdateAsync(ITelegramBotClient client, Update update, Cancellat
             replyMarkup: inlineKeyboard,
             cancellationToken: cancellationToken
             );
+
         return;
     }
 
